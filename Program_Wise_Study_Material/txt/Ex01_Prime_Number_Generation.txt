@@ -1,0 +1,72 @@
+Ex.No.1 Prime Number Generation
+
+Ex.No.1 Prime Number Generation
+
+import java.util.Scanner; // Used to take input from the user
+
+public class PrimeNumber { // Program class
+    public static void main(String[] args) { // main() is the entry method: program starts here
+        // Easy analogy:
+        // Think of each number as a lock.
+        // A prime lock opens with exactly 2 keys only: key 1 and the number itself.
+        // If more than 2 keys open it, it is not prime.
+
+        // Why output looks like that:
+        // We print only numbers that have exactly 2 divisors.
+        int n;       // Stores the limit entered by user (example: 10)
+        int j;       // Current number being checked for prime
+        int i;       // Checks all possible divisors of j
+        int counter; // Counts how many divisors j has
+
+        Scanner scanner = new Scanner(System.in); // Object used to read keyboard input
+
+        System.out.print("Enter a limit number: "); // Friendly message for input
+        n = scanner.nextInt(); // Read user input and store in n
+
+        System.out.println("Prime numbers from 1 to " + n + " are:"); // Output heading
+
+        for (j = 2; j <= n; j++) { // Outer loop: checks each number from 2 to n
+            counter = 0; // Reset divisor count for this j
+
+            for (i = 1; i <= j; i++) { // Inner loop: test divisors from 1 to j
+                if (j % i == 0) { // Condition: true when i divides j exactly
+                    counter++; // Increase divisor count
+                }
+            }
+
+            if (counter == 2) { // Condition: prime numbers have exactly 2 divisors
+                System.out.print(j + " "); // Print only prime numbers
+            }
+        }
+
+        scanner.close(); // Good practice: close input resource
+    }
+}
+
+Variables Used (Easy Meaning)
+- i: Checks possible divisors for the current number.
+- j: The current number being tested (2, 3, 4, ... up to n).
+- n: The maximum limit entered by the user.
+- counter: Counts how many numbers divide j exactly.
+- scanner: Reads user input from keyboard.
+
+Simple understanding:
+- For each j, we reset counter to 0.
+- i runs from 1 to j and checks j % i == 0.
+- If counter becomes 2, the number is prime and gets printed.
+
+Sample Input / Output
+Sample Input:
+10
+
+Sample Output:
+Prime numbers from 1 to 10 are:
+2 3 5 7
+
+Output Explanation (Easy)
+- 2 3 5 7 are printed because each has exactly 2 divisors.
+- Example: 5 is divisible by only 1 and 5.
+- Numbers like 4, 6, 8, 9, 10 are not printed because they have more than 2 divisors.
+
+
+

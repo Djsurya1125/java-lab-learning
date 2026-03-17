@@ -1,0 +1,135 @@
+# Ex.No.6 String Operations using String Class
+
+## Ex.No.6 String Operations using String Class
+
+```java
+import java.util.*; // Imports Scanner class
+
+class StringOps {
+    public static void main(String[] args) { // main() is the starting method of the program
+        // Easy analogy:
+        // Think this like a canteen menu card.
+        // You choose one option number, and program does that string operation.
+
+        Scanner s = new Scanner(System.in); // Reads input from keyboard
+
+        String string1 = s.nextLine(); // Reads first string
+        String string2 = s.nextLine(); // Reads second string
+        int ch; // Stores user menu choice
+
+        do { // Loop keeps showing operations until user selects exit
+            ch = s.nextInt(); // Reads choice number
+            s.nextLine(); // Consumes newline after number input
+
+            switch (ch) { // Performs operation based on choice
+                case 1:
+                    String concat = string1 + " " + string2; // Joins strings with one space in between
+                    System.out.println(concat); // Prints concatenated string
+                    break;
+                case 2:
+                    String key = s.nextLine(); // Reads text to search in string1
+                    if (string1.contains(key)) { // Checks whether key is present
+                        System.out.println(string1.indexOf(key)); // Prints first index where key appears
+                    } else {
+                        System.out.println("Not found"); // Prints when search text is absent
+                    }
+                    break;
+                case 3:
+                    String search = s.nextLine(); // Reads text to extract from string2
+                    if (string2.contains(search)) { // Checks whether it exists in string2
+                        int start = string2.indexOf(search); // Start index of matched part
+                        int end = start + search.length(); // End index (exclusive)
+                        System.out.println(string2.substring(start, end)); // Prints extracted substring
+                    } else {
+                        System.out.println("Not found"); // Prints when substring is absent
+                    }
+                    break;
+                case 4:
+                    System.out.println("Exit"); // Stops menu loop
+                    break;
+                default:
+                    System.out.println("Invalid choice"); // Handles wrong menu input
+            }
+        } while (ch != 4); // Repeats until choice is 4 (Exit)
+
+        s.close(); // Good practice: close Scanner resource
+    }
+}
+```
+
+### Variables Used (Easy Meaning)
+- `string1`: Stores first string from user.
+- `string2`: Stores second string from user.
+- `ch`: Stores menu choice.
+- `concat`: Stores joined string from option 1.
+- `key`: Stores search text for option 2.
+- `search`: Stores text to extract in option 3.
+- `start`: Stores starting index of matched text.
+- `end`: Stores ending index of matched text.
+- `s`: Scanner object to read input.
+
+### Simple understanding
+- Program reads two strings first.
+- Then user selects menu choices (1 to 4).
+- Each choice performs one string operation.
+- Program stops only when user enters choice `4`.
+
+### Input Structure (How to Enter)
+```text
+Step 1: Enter first string
+
+Step 2: Enter second string
+
+Step 3: Enter menu choice
+- Choice 1: Concatenate
+- Choice 2: Search text in first string (then enter search key)
+- Choice 3: Extract matching text from second string (then enter search text)
+- Choice 4: Exit
+
+Important:
+- For choice 2 and 3, you must enter one extra text input after the choice
+- Menu repeats until choice 4
+```
+
+### Sample Input / Output
+```text
+Sample Input (categorized):
+
+First string:
+hello java
+
+Second string:
+learning java
+
+Choice 1 (Concatenate):
+1
+
+Choice 4 (Exit):
+4
+
+Sample Output:
+hello java learning java
+Exit
+```
+
+### Actual Input (Raw Console)
+```text
+hello java
+learning java
+1
+4
+```
+
+### Actual Output (Raw Console)
+```text
+hello java learning java
+Exit
+```
+
+### Output Explanation (Easy)
+- Choice `1` joins first and second strings with one space.
+- Output becomes `hello java learning java`.
+- Choice `4` prints `Exit` and loop stops.
+- Since we did not choose 2 or 3, search/extract outputs do not appear.
+
+---

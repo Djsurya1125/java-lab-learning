@@ -1,0 +1,123 @@
+# Ex.No.8 Multithread Square and Cube
+
+## Ex.No.8 Multithread Square and Cube
+
+```java
+import java.util.Random; // Imports Random class
+
+public class EXNO8 {
+    public static void main(String[] args) { // main() is the starting method
+        // Easy analogy:
+        // Think one teacher gives random numbers to two students.
+        // One student writes square, another writes cube.
+        // All are working at the same time (multi-threading).
+
+        Number n = new Number(); // Creates number generator thread object
+        n.start(); // Starts Number thread
+    }
+}
+
+class Square extends Thread {
+    int x; // Stores number for square calculation
+
+    Square(int n) { // Constructor receives number
+        x = n;
+    }
+
+    public void run() { // run() executes when this thread starts
+        System.out.println("Square of " + x + " = " + (x * x)); // Prints square value
+    }
+}
+
+class Cube extends Thread {
+    int x; // Stores number for cube calculation
+
+    Cube(int n) { // Constructor receives number
+        x = n;
+    }
+
+    public void run() { // run() executes when this thread starts
+        System.out.println("Cube of " + x + " = " + (x * x * x)); // Prints cube value
+    }
+}
+
+class Number extends Thread {
+    public void run() { // Main logic for generating random numbers
+        Random random = new Random(); // Random object to generate numbers
+
+        // Loop runs 10 times, so program handles 10 random numbers
+        for (int i = 0; i < 10; i++) {
+            int randomInteger = random.nextInt(100); // Generates number from 0 to 99
+            System.out.println("Generated: " + randomInteger); // Prints generated number
+
+            new Square(randomInteger).start(); // Starts square thread
+            new Cube(randomInteger).start(); // Starts cube thread
+
+            try {
+                Thread.sleep(1000); // Wait 1 second before next random number
+            } catch (InterruptedException e) {
+                System.out.println(e); // Prints error if sleep is interrupted
+            }
+        }
+    }
+}
+```
+
+### Variables Used (Easy Meaning)
+- `n`: Number thread object started from main.
+- `x`: Stores one number inside Square/Cube class.
+- `random`: Random object that generates numbers.
+- `i`: Loop counter from 0 to 9.
+- `randomInteger`: Current random number.
+
+### Simple understanding
+- Number thread generates one random number.
+- For that number, Square and Cube threads start.
+- Square thread prints square, Cube thread prints cube.
+- This repeats 10 times with 1-second gap.
+
+### Input Structure (How to Enter)
+```text
+No keyboard input is required.
+Program generates random numbers automatically.
+```
+
+### Sample Input / Output
+```text
+Sample Input (categorized):
+
+Input:
+No manual input
+
+Sample Output (example):
+Generated: 8
+Square of 8 = 64
+Cube of 8 = 512
+Generated: 15
+Cube of 15 = 3375
+Square of 15 = 225
+... continues for 10 numbers
+```
+
+### Actual Input (Raw Console)
+```text
+No console input
+```
+
+### Actual Output (Raw Console)
+```text
+Generated: 8
+Square of 8 = 64
+Cube of 8 = 512
+Generated: 15
+Cube of 15 = 3375
+Square of 15 = 225
+```
+
+### Output Explanation (Easy)
+- `Generated:` line comes from Number thread.
+- Square and cube lines come from two worker threads.
+- Sometimes cube prints before square (thread timing).
+- Order can change, but values are mathematically correct.
+
+---

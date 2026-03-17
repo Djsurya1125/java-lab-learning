@@ -1,0 +1,126 @@
+# Ex.No.12 Text Formatting (Swing)
+
+## Ex.No.12 Text Formatting (Swing)
+
+```java
+import javax.swing.*; // Imports Swing UI classes
+import java.awt.*; // Imports Font, Layout classes
+import java.awt.event.*; // Imports event handling classes
+
+public class TextEditorss extends JFrame implements ActionListener {
+    private JTextArea textArea; // Area where user types text
+    private JComboBox<String> fontSizeCombo; // Dropdown for font size
+    private JCheckBox boldCheckBox; // Checkbox for bold style
+    private JCheckBox italicCheckBox; // Checkbox for italic style
+
+    public TextEditorss() { // Constructor builds UI
+        // Easy analogy:
+        // Think this like a mini Word toolbar.
+        // You choose size, bold, italic, and text style changes instantly.
+
+        setTitle("Text Formatter"); // Window title
+        setSize(500, 350); // Window size
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close app on window close
+        setLayout(new BorderLayout()); // Layout with top and center areas
+
+        textArea = new JTextArea(); // Creates text area
+        textArea.setFont(new Font("Arial", Font.PLAIN, 14)); // Default font
+        add(new JScrollPane(textArea), BorderLayout.CENTER); // Adds scrollable text area
+
+        JPanel topPanel = new JPanel(); // Panel for controls
+        fontSizeCombo = new JComboBox<>(new String[]{"12", "14", "16", "18", "20"}); // Size options
+        boldCheckBox = new JCheckBox("Bold"); // Bold control
+        italicCheckBox = new JCheckBox("Italic"); // Italic control
+
+        topPanel.add(new JLabel("Size:")); // Label before dropdown
+        topPanel.add(fontSizeCombo);
+        topPanel.add(boldCheckBox);
+        topPanel.add(italicCheckBox);
+        add(topPanel, BorderLayout.NORTH); // Adds controls at top
+
+        // Listener means actionPerformed() runs when control value changes
+        fontSizeCombo.addActionListener(this);
+        boldCheckBox.addActionListener(this);
+        italicCheckBox.addActionListener(this);
+
+        setVisible(true); // Shows window
+    }
+
+    public void actionPerformed(ActionEvent e) { // Runs on control changes
+        int fontSize = Integer.parseInt((String) fontSizeCombo.getSelectedItem()); // Reads selected size
+        int style = Font.PLAIN; // Default plain style
+
+        if (boldCheckBox.isSelected()) { // Checks bold selection
+            style |= Font.BOLD;
+        }
+        if (italicCheckBox.isSelected()) { // Checks italic selection
+            style |= Font.ITALIC;
+        }
+
+        textArea.setFont(new Font("Arial", style, fontSize)); // Applies updated style
+    }
+
+    public static void main(String[] args) { // Starts Swing app
+        SwingUtilities.invokeLater(TextEditorss::new); // Creates UI safely on event thread
+    }
+}
+```
+
+### Variables Used (Easy Meaning)
+- `textArea`: Where user types and sees formatted text.
+- `fontSizeCombo`: Dropdown storing size options.
+- `boldCheckBox`: Enables/disables bold.
+- `italicCheckBox`: Enables/disables italic.
+- `fontSize`: Selected font size number.
+- `style`: Font style value (plain/bold/italic).
+
+### Simple understanding
+- Program opens a text editor window.
+- User types text in text area.
+- User changes size, bold, italic from controls.
+- `actionPerformed` updates font immediately.
+
+### Input Structure (How to Enter)
+```text
+Step 1: Run program to open window
+Step 2: Type any text in text area
+Step 3: Change size from dropdown
+Step 4: Tick/untick Bold and Italic checkboxes
+
+Important:
+- This is GUI input, not console input
+```
+
+### Sample Input / Output
+```text
+Sample Input (categorized):
+
+Text entered:
+Hello Java
+
+Controls selected:
+Size = 18
+Bold = true
+Italic = false
+
+Sample Output:
+Window shows "Hello Java" in bigger bold font.
+```
+
+### Actual Input (Raw Console)
+```text
+No console input
+```
+
+### Actual Output (Raw Console)
+```text
+No console output (output appears in GUI window)
+```
+
+### Output Explanation (Easy)
+- When size changes, font size updates.
+- Bold checkbox makes letters thicker.
+- Italic checkbox makes letters slanted.
+- If both selected, text becomes bold + italic.
+
+---

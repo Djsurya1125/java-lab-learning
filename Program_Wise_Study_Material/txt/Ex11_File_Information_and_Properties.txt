@@ -1,0 +1,86 @@
+Ex.No.11 File Information and Properties
+
+Ex.No.11 File Information and Properties
+
+import java.io.*; // Imports File class
+import java.util.*; // Imports Scanner class
+
+class Main {
+    public static void main(String[] args) { // main() is the starting method
+        // Easy analogy:
+        // Think a file like a student ID card.
+        // We check if it exists, can be read/written, its size, and file type.
+
+        Scanner s = new Scanner(System.in); // Reads file name/path from keyboard
+        String filename = s.nextLine(); // Stores file name entered by user
+
+        File fobj = new File(filename); // Creates file object for given path
+
+        if (fobj.exists()) { // Checks whether file exists
+            System.out.println("Readable: " + fobj.canRead()); // Shows read permission
+            System.out.println("Writable: " + fobj.canWrite()); // Shows write permission
+            System.out.println("Length: " + fobj.length() + " bytes"); // Shows file size in bytes
+
+            String ext = fobj.getName().toLowerCase(); // Gets file name in lowercase
+            if (ext.endsWith(".java")) { // Checks .java extension
+                System.out.println("Java source file");
+            } else if (ext.endsWith(".pdf")) { // Checks .pdf extension
+                System.out.println("PDF file");
+            } else {
+                System.out.println("Other file type"); // For all other extensions
+            }
+        } else {
+            System.out.println("File does not exist"); // Prints when file path is wrong
+        }
+
+        s.close(); // Good practice: close Scanner resource
+    }
+}
+
+Variables Used (Easy Meaning)
+- s: Scanner object to read file name/path.
+- filename: Stores user-entered file name/path.
+- fobj: File object used to check properties.
+- ext: Stores lowercase file name for extension check.
+
+Simple understanding
+- Program reads one file name/path.
+- It checks whether file exists.
+- If file exists, it prints permissions, size, and file type.
+- If file does not exist, it prints error message.
+
+Input Structure (How to Enter)
+Step 1: Enter file name or full file path
+
+Important:
+- If file is not in current folder, give full path
+- Extension (.java, .pdf) decides file type output
+
+Sample Input / Output
+Sample Input (categorized):
+
+File name:
+record-apr-2026.pdf
+
+Sample Output (example):
+Readable: true
+Writable: true
+Length: 123456 bytes
+PDF file
+
+Actual Input (Raw Console)
+record-apr-2026.pdf
+
+Actual Output (Raw Console)
+Readable: true
+Writable: true
+Length: 123456 bytes
+PDF file
+
+Output Explanation (Easy)
+- File exists, so program prints its details.
+- Readable and Writable depend on system permissions.
+- Length is file size in bytes.
+- .pdf extension gives output PDF file.
+
+---

@@ -1,0 +1,105 @@
+# Ex.No.4 Random Number in Range
+
+## Ex.No.4 Random Number in Range
+
+```java
+import java.util.*; // Imports Scanner and Random classes
+
+public class Rand {
+    public static void main(String[] args) { // main() is the starting method of the program
+        // Easy analogy:
+        // Think of a raffle box with numbered coupons.
+        // When you draw, you get random numbers within a range (e.g., 10 to 19).
+        // Every draw gives a different number (that's why output differs each run).
+
+        Scanner s = new Scanner(System.in); // Reads numbers from keyboard
+        Random r = new Random(); // Creates object that generates random numbers
+
+        int min = s.nextInt();   // Stores starting number of range
+        int max = s.nextInt();   // Stores ending number of range
+        int n = s.nextInt();     // Stores how many random numbers to generate
+
+        // Loop repeats n times to generate n random numbers
+        for (int i = 0; i < n; i++) { // Condition: keep looping while i is less than n
+            // Formula: nextInt(max - min) gives 0 to (max-min-1)
+            // Adding min shifts it to range [min, max)
+            // Example: if min=10, max=20: formula gives 0..9, then adding 10 gives 10..19
+            int num = r.nextInt(max - min) + min; // Generate one random number in range
+            System.out.println(num); // Display the random number
+        }
+
+        s.close(); // Good practice: close Scanner resource
+    }
+}
+```
+
+### Variables Used (Easy Meaning)
+- `min`: Stores the starting value of the range (included in output).
+- `max`: Stores the ending value of the range (NOT included in output).
+- `n`: Stores how many random numbers to generate.
+- `r`: Random object that creates random numbers.
+- `s`: Scanner object to read input from keyboard.
+- `i`: Loop counter that goes from 0 to n-1.
+- `num`: Stores one random number generated in the range.
+
+### Simple understanding
+- Program reads three numbers: min, max, and count.
+- Loop generates count random numbers.
+- Each number is between min (included) and max (not included).
+- Every time you run, output is different (random behavior).
+
+### Input Structure (How to Enter)
+```text
+Step 1: Enter minimum value (range starts here)
+Step 2: Enter maximum value (range goes up to here, but not including this)
+Step 3: Enter how many random numbers you want
+
+Important:
+- If min=10 and max=20, output will be 10, 11, 12...19 (never 20)
+- max is excluded from the range
+```
+
+### Sample Input / Output
+```text
+Sample Input (categorized):
+
+Minimum value:
+10
+
+Maximum value:
+20
+
+How many numbers:
+5
+
+Sample Output (each run may differ):
+14
+19
+11
+10
+17
+```
+
+### Actual Input (Raw Console)
+```text
+10
+20
+5
+```
+
+### Actual Output (Raw Console)
+```text
+14
+19
+11
+10
+17
+```
+
+### Output Explanation (Easy)
+- `14, 19, 11, 10, 17` are all between 10 and 19 (because min=10, max=20).
+- Each number is random; if you run again, you get different numbers.
+- Total of 5 numbers printed (because n=5).
+- 20 will never appear (max is not included).- **Same number can repeat**: If you run again, you might get `15, 18, 15, 12, 19` (notice 15 appears twice). This is normal for random numbers!
+---
+

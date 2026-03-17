@@ -1,0 +1,131 @@
+# Ex.No.15 Traffic Light Simulator
+
+## Ex.No.15 Traffic Light Simulator
+
+```java
+import javax.swing.*; // Imports Swing classes
+import java.awt.*; // Imports Color and layout classes
+import java.awt.event.*; // Imports action event classes
+
+public class TrafficLightSimulator extends JFrame implements ActionListener {
+    private JPanel lightPanel; // Panel that changes color like traffic light
+    private JLabel messageLabel; // Label to show instruction text
+    private JRadioButton redBtn; // Red signal option
+    private JRadioButton yellowBtn; // Yellow signal option
+    private JRadioButton greenBtn; // Green signal option
+
+    public TrafficLightSimulator() { // Constructor builds window
+        // Easy analogy:
+        // Same as real road signal.
+        // Red means stop, yellow means wait, green means go.
+
+        setTitle("Traffic Light Simulator"); // Window title
+        setSize(420, 300); // Window size
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close app on window close
+        setLayout(new BorderLayout());
+
+        lightPanel = new JPanel(); // Creates color display panel
+        lightPanel.setBackground(Color.RED); // Default light is red
+        add(lightPanel, BorderLayout.CENTER);
+
+        messageLabel = new JLabel("STOP", SwingConstants.CENTER); // Default message
+        add(messageLabel, BorderLayout.NORTH);
+
+        redBtn = new JRadioButton("Red", true); // Red selected by default
+        yellowBtn = new JRadioButton("Yellow");
+        greenBtn = new JRadioButton("Green");
+
+        ButtonGroup bg = new ButtonGroup(); // Groups radio buttons so only one is selected
+        bg.add(redBtn);
+        bg.add(yellowBtn);
+        bg.add(greenBtn);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(redBtn);
+        buttonPanel.add(yellowBtn);
+        buttonPanel.add(greenBtn);
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        // Listener means actionPerformed() runs when selection changes
+        redBtn.addActionListener(this);
+        yellowBtn.addActionListener(this);
+        greenBtn.addActionListener(this);
+
+        setVisible(true); // Shows window
+    }
+
+    public void actionPerformed(ActionEvent e) { // Runs on radio button selection
+        if (redBtn.isSelected()) {
+            lightPanel.setBackground(Color.RED); // Red color shown
+            messageLabel.setText("STOP");
+        } else if (yellowBtn.isSelected()) {
+            lightPanel.setBackground(Color.YELLOW); // Yellow color shown
+            messageLabel.setText("WAIT");
+        } else if (greenBtn.isSelected()) {
+            lightPanel.setBackground(Color.GREEN); // Green color shown
+            messageLabel.setText("GO");
+        }
+    }
+
+    public static void main(String[] args) { // Starts Swing app
+        SwingUtilities.invokeLater(TrafficLightSimulator::new);
+    }
+}
+```
+
+### Variables Used (Easy Meaning)
+- `lightPanel`: Color area representing traffic light.
+- `messageLabel`: Text showing STOP/WAIT/GO.
+- `redBtn`: Radio button for red light.
+- `yellowBtn`: Radio button for yellow light.
+- `greenBtn`: Radio button for green light.
+- `bg`: ButtonGroup to allow single selection.
+
+### Simple understanding
+- Program opens traffic signal window.
+- User selects one radio button.
+- Panel color changes to selected signal color.
+- Message label changes to STOP, WAIT, or GO.
+
+### Input Structure (How to Enter)
+```text
+Step 1: Run program to open window
+Step 2: Click Red / Yellow / Green radio button
+
+Important:
+- Input is by mouse click in GUI
+- Only one signal can be selected at a time
+```
+
+### Sample Input / Output
+```text
+Sample Input (categorized):
+
+Action 1:
+Click Yellow
+
+Action 2:
+Click Green
+
+Sample Output:
+Panel color becomes Yellow and message shows WAIT
+Panel color becomes Green and message shows GO
+```
+
+### Actual Input (Raw Console)
+```text
+No console input
+```
+
+### Actual Output (Raw Console)
+```text
+No console output (changes appear in GUI window)
+```
+
+### Output Explanation (Easy)
+- Radio button selection triggers `actionPerformed`.
+- Selected signal decides panel color.
+- Label text matches traffic rule meaning.
+- This simulates basic traffic light behavior.
+
+---
